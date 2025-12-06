@@ -29,9 +29,5 @@ cd evildll
 docker build -t evildll .
 
 # Generate your DLL in ~2 seconds
-docker run --rm -v .:/out evildll \
-    -u evilprint \
-    -p 'Password1' \
-    -g "Administrators" \
+docker run --rm -v .:/out evildll -u evilprint -p 'Password1' -g "Administrators" -o evil.dll
 
-    -o evil.dll
